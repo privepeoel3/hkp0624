@@ -31,89 +31,22 @@ wget -qO /tmp/html.zip ${Site}
 unzip -qo /tmp/html.zip -d /usr/share/nginx
 rm -rf /tmp/html.zip
 
-cat << EOF > /xraybin/config.json
-{
-    "log": {
-        "loglevel": "warning"
-    },
-    "routing": {
-        "domainStrategy": "AsIs",
-        "rules": [
-            {
-                "type": "field",
-                "ip": [
-                    "geoip:private"
-                ],
-                "outboundTag": "block"
-            }
-        ]
-    },
-    "inbounds": [
-        {
-            "listen": "0.0.0.0",
-            "port": 12345,
-            "protocol": "${TYPE}",
-            "settings": {
-                "clients": [
-                    {
-                        "id": "${UUID}"
-                    }
-                ],
-                "decryption": "none"
-            },
-            "streamSettings": {
-                "network": "ws",
-                "security": "none",
-                "wsSettings": {
-                    "acceptProxyProtocol": false,
-                    "path": "/${UUID}-${TYPE}"
-                }
-            }
-        }
-    ],
-    "outbounds": [
-        {
-            "protocol": "freedom",
-            "tag": "direct"
-        },
-        {
-            "protocol": "blackhole",
-            "tag": "block"
-        }
-    ]
-}
-EOF
+sed -e "/^#/d"\
+    -e "s/\${UUID}/${UUID}/g"\
+    -e "s/\${TYPE}/${TYPE}/g"\
+    /conf/Xray.template.json >  /xraybin/config.json
+echo /xraybin/config.json
+cat /xraybin/config.json
 
-cat << EOF > /etc/nginx/conf.d/ray.conf
-server {
-    listen       ${PORT};
-    listen       [::]:${PORT};
 
-    root /usr/share/nginx/html;
-
-#    resolver 8.8.8.8:53;
-    location / {
-        index  index.html index.htm;
-#        proxy_pass https://${ProxySite};
-
-    }
-
-    location = /${UUID}-${TYPE} {
-        if ($http_upgrade != "websocket") { # WebSocket协商失败时返回404
-            return 404;
-        }
-        proxy_redirect off;
-        proxy_pass http://127.0.0.1:12345;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_set_header Host $http_host;
-        # Show real IP in access.log
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    }
-}
-EOF
+sed -e "/^#/d"\
+    -e "s/\${PORT}/${PORT}/g"\
+    -e "s/\${UUID}/${UUID}/g"\
+    -e "s/\${TYPE}/${TYPE}/g"\
+    -e "$s"\
+    /conf/nginx.template.conf > /etc/nginx/conf.d/ray.conf
+echo /etc/nginx/conf.d/ray.conf
+cat /etc/nginx/conf.d/ray.conf
 
 
 cd /xraybin
