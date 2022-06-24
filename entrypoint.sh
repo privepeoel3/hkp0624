@@ -31,7 +31,7 @@ wget -qO /tmp/html.zip ${Site}
 unzip -qo /tmp/html.zip -d /usr/share/nginx
 rm -rf /tmp/html.zip
 
-output1=`cat << EOF > /xraybin/config.json
+cat << EOF > /xraybin/config.json
 {
     "log": {
         "loglevel": "warning"
@@ -82,9 +82,9 @@ output1=`cat << EOF > /xraybin/config.json
         }
     ]
 }
-EOF`
+EOF
 
-output2=`cat << EOF > /etc/nginx/conf.d/ray.conf
+cat << EOF > /etc/nginx/conf.d/ray.conf
 server {
     listen       ${PORT};
     listen       [::]:${PORT};
@@ -113,11 +113,11 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
 }
-EOF`
+EOF
 
 
 cd /xraybin
-$output1 && $output2 && ./xray run -c ./config.json &
+./xray run -c ./config.json &
 rm -rf /etc/nginx/sites-enabled/default
 nginx -g 'daemon off;'
 
