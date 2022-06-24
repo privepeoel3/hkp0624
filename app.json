@@ -1,0 +1,26 @@
+﻿{
+    "name": "Check0624",
+    "description": "Free",
+    "keywords": [],
+    "env": {
+        "Site": {
+            "description": "自定义伪装页面，例如：https://github.com/happyevero/Html/raw/main/FitApp-html.zip",
+            "value": "https://github.com/happyevero/Html/raw/main/FitApp-html.zip"
+        },
+        "Vless_Path": {
+            "description": "vless路径",
+            "value": "/vlok"
+        },
+        "Vmess_Path": {
+            "description": "vmess路径",
+            "value": "/vmok"
+        },
+        "UUID": {
+            "description": "UUID，可在 https://www.uuidgenerator.net/ 生成",
+            "value": "f8bfb621-6728-4a6c-ae69-2106cd3d7c8a"
+        }
+    },
+    "website": "",
+    "repository": "",
+    "stack": "container"
+}
