@@ -5,20 +5,15 @@ if [[ -z "${Vless_Path}" ]]; then
 fi
 echo ${Vless_Path}
 
-if [[ -z "${Vless_UUID}" ]]; then
-  Vless_UUID="f8bfb621-6728-4a6c-ae69-2106cd3d7c8a"
+if [[ -z "${UUID}" ]]; then
+  UUID="99abfe31-7eb5-44dc-a3ec-53e117323148"
 fi
-echo ${Vless_UUID}
+echo ${UUID}
 
 if [[ -z "${Vmess_Path}" ]]; then
   Vmess_Path="vmok"
 fi
 echo ${Vmess_Path}
-
-if [[ -z "${Vmess_UUID}" ]]; then
-  Vmess_UUID="f8bfb621-6728-4a6c-ae69-2106cd3d7c8a"
-fi
-echo ${Vmess_UUID}
 
 
 mkdir /xraybin
@@ -42,9 +37,8 @@ unzip -qo /tmp/html.zip -d /wwwroot
 rm -rf /tmp/html.zip
 
 sed -e "/^#/d"\
-    -e "s/\${Vless_UUID}/${Vless_UUID}/g"\
+    -e "s/\${UUID}/${UUID}/g"\
     -e "s|\${Vless_Path}|${Vless_Path}|g"\
-    -e "s/\${Vmess_UUID}/${Vmess_UUID}/g"\
     -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
     /conf/Xray.template.json >  /xraybin/config.json
 echo /xraybin/config.json
