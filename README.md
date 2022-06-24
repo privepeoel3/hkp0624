@@ -2,7 +2,7 @@
 
 ## HKP0624
 
-[![](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/privepeoel3/check0624.git)
+[![](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/privepeoel3/hkp0624.git)
 
 
 
