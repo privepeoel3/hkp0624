@@ -7,13 +7,9 @@
             "description": "自定义伪装页面，例如：https://github.com/happyevero/Html/raw/main/FitApp-html.zip",
             "value": "https://github.com/happyevero/Html/raw/main/FitApp-html.zip"
         },
-        "Vless_Path": {
-            "description": "vless路径",
-            "value": "/vlok"
-        },
-        "Vmess_Path": {
-            "description": "vmess路径",
-            "value": "/vmok"
+        "VPath": {
+            "description": "路径",
+            "value": "/vlmok"
         },
         "UUID": {
             "description": "UUID，可在 https://www.uuidgenerator.net/ 生成",
