@@ -33,7 +33,7 @@ ls -al
 # Install Html
 mkdir /wwwroot
 wget -qO /tmp/html.zip ${Site} 
-unzip -qo /tmp/html.zip -d /wwwroot 
+unzip -qo /tmp/html.zip -d /usr/share/nginx
 rm -rf /tmp/html.zip
 
 sed -e "/^#/d"\
