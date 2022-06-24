@@ -1,19 +1,14 @@
 ﻿#!/bin/sh
  
-if [[ -z "${Vless_Path}" ]]; then
-  Vless_Path="vlok"
+if [[ -z "${TYPE}" ]]; then
+  TYPE="vless"
 fi
-echo ${Vless_Path}
+echo ${TYPE}
 
 if [[ -z "${UUID}" ]]; then
   UUID="f8bfb621-6728-4a6c-ae69-2106cd3d7c8a"
 fi
 echo ${UUID}
-
-if [[ -z "${Vmess_Path}" ]]; then
-  Vmess_Path="vmok"
-fi
-echo ${Vmess_Path}
 
 
 mkdir /xraybin
@@ -38,8 +33,7 @@ rm -rf /tmp/html.zip
 
 sed -e "/^#/d"\
     -e "s/\${UUID}/${UUID}/g"\
-    -e "s|\${Vless_Path}|${Vless_Path}|g"\
-    -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
+    -e "s/\${TYPE}/${TYPE}/g"\
     /conf/Xray.template.json >  /xraybin/config.json
 echo /xraybin/config.json
 cat /xraybin/config.json
@@ -47,8 +41,8 @@ cat /xraybin/config.json
 
 sed -e "/^#/d"\
     -e "s/\${PORT}/${PORT}/g"\
-    -e "s|\${Vless_Path}|${Vless_Path}|g"\
-    -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
+    -e "s/\${UUID}/${UUID}/g"\
+    -e "s/\${TYPE}/${TYPE}/g"\
     -e "$s"\
     /conf/nginx.template.conf > /etc/nginx/conf.d/ray.conf
 echo /etc/nginx/conf.d/ray.conf
