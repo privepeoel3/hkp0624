@@ -31,7 +31,7 @@ wget -qO /tmp/html.zip ${Site}
 unzip -qo /tmp/html.zip -d /usr/share/nginx
 rm -rf /tmp/html.zip
 
-cat <<EOF > /xraybin/config.json
+cat << EOF > /xraybin/config.json
 {
     "log": {
         "loglevel": "warning"
@@ -83,10 +83,8 @@ cat <<EOF > /xraybin/config.json
     ]
 }
 EOF
-echo /xraybin/config.json
-cat /xraybin/config.json
 
-cat <<EOF > /etc/nginx/conf.d/ray.conf
+cat << EOF > /etc/nginx/conf.d/ray.conf
 server {
     listen       ${PORT};
     listen       [::]:${PORT};
@@ -116,8 +114,9 @@ server {
     }
 }
 EOF
-echo /etc/nginx/conf.d/ray.conf
-cat /etc/nginx/conf.d/ray.conf
+
+sleep 10;
+
 
 cd /xraybin
 ./xray run -c ./config.json &
