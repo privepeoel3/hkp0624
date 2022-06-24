@@ -9,8 +9,7 @@ RUN set -ex\
     && apt autoremove -y
 
 
-COPY Xray.template.json /conf
-COPY nginx.template.conf /conf
+COPY conf/ /conf
 COPY entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
