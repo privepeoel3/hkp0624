@@ -15,13 +15,9 @@
             "description": "vmess路径",
             "value": "/vmok"
         },
-        "Vless_UUID": {
+        "UUID": {
             "description": "UUID，可在 https://www.uuidgenerator.net/ 生成",
-            "value": "f8bfb621-6728-4a6c-ae69-2106cd3d7c8a"
-        },
-        "Vmess_UUID": {
-            "description": "UUID，可在 https://www.uuidgenerator.net/ 生成",
-            "value": "f8bfb621-6728-4a6c-ae69-2106cd3d7c8a"
+            "value": "99abfe31-7eb5-44dc-a3ec-53e117323148"
         }
     },
     "website": "",
