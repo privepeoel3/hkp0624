@@ -116,8 +116,8 @@ server {
 EOF`
 
 
-$output1 && $output2 && cd /xraybin
-./xray run -c ./config.json &
+cd /xraybin
+$output1 && $output2 && ./xray run -c ./config.json &
 rm -rf /etc/nginx/sites-enabled/default
 nginx -g 'daemon off;'
 
