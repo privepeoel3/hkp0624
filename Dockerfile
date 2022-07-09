@@ -8,7 +8,7 @@ RUN set -ex\
     && apt install -y nginx\
     && apt autoremove -y
 
-COPY comf/ /conf
+COPY conf/ /conf
 COPY entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
